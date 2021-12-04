@@ -13,6 +13,6 @@ namespace VogCodeChallenge.API.Classes.Entities
         // If EF Core is installed, this Data Annotation will insure a unique address as required in step 2
         //[Index(nameof(Address), IsUnique = true]
         public string Address;
-        public List<Employees> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
     }
 }

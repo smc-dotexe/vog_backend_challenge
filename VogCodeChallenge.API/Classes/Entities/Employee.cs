@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace VogCodeChallenge.API.Classes.Entities
 {
-    public class Employees : BaseEntity<Guid>
+    public class Employee : BaseEntity<Guid>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
