@@ -9,7 +9,6 @@ namespace VogCodeChallenge.Step7
             Console.WriteLine("Step 7");
             string names = QuestionClass.NameIterator();
             Console.WriteLine(names);
-            Console.Write("==================================");
         }
     }
 }
