@@ -33,9 +33,7 @@ namespace VogCodeChallenge.API.Controllers
         {
             // To simulate an async method
             var employees = await Task.Run(() => _employeeServices.ListAll());
-
             return CreateResponse(employees);
-
         }
 
         /// <summary>
@@ -49,7 +47,6 @@ namespace VogCodeChallenge.API.Controllers
         public async Task<ActionResult<List<Employee>>> DepartmentEmployees([FromRoute] Guid departmentId)
         {
             var employeesInDepartment = await Task.Run(() => _employeeServices.GetAllFromDepartment(departmentId));
-            
             return CreateResponse(employeesInDepartment);
         }
     }

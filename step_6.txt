@@ -1,0 +1,8 @@
+To integrate a database with EmployeeServices.cs a new .NetCore Web App project would be created (for separation of concerns) with the naming convention of <project_name>.App.
+In this project, ApplicationDbContext.cs will be created, where the entities will be turned into database tables with the help of EntityFrameworkCore.
+Perhaps it might be necessary to move the EmployeeService.cs into the .App project as well and create a GenericRepository.cs to encapsulate 
+CRUD operations. Using dependency injection, the ApplicationDbContext will be injected into the Repository layer to replace the Data.cs abstract class
+in EmployeeServices.cs. 
+
+In the GenericRepository, this is where IEnumerable<TEntity> GetAll() would be placed to follow the principle of accepting the most generic type and 
+returning the most specific type.The IList<Employee> ListAll() would still be stored in the service layer incase the user wants some added functionality using IList's methods. 
