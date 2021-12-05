@@ -4,5 +4,6 @@ Perhaps it might be necessary to move the EmployeeService.cs into the .App proje
 CRUD operations. Using dependency injection, the ApplicationDbContext will be injected into the Repository layer to replace the Data.cs abstract class
 in EmployeeServices.cs. 
 
-In the GenericRepository, this is where IEnumerable<TEntity> GetAll() would be placed to follow the principle of accepting the most generic type and 
-returning the most specific type.The IList<Employee> ListAll() would still be stored in the service layer incase the user wants some added functionality using IList's methods. 
+In the GenericRepository, this is where IEnumerable<TEntity> GetAll() would be placed to talk directly with the database.
+The IList<Employee> ListAll() would still be stored in the service layer incase the user wants some added functionality 
+using IList's methods on top of what GetAll() retrieves. 
