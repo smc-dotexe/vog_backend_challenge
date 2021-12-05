@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace VogCodeChallenge.API.Classes.Entities
@@ -12,8 +13,10 @@ namespace VogCodeChallenge.API.Classes.Entities
         public string JobTitle { get; set; }
         public string MailingAddress { get; set; }
 
-        // Relationship with Department Entity
         public Guid DepartmentId { get; set; }
+
+        // To prevent json looping through the same data since department has a list of employees field
+        [JsonIgnore]
         public Department Department { get; set; }
     }
 }

@@ -9,8 +9,12 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using VogCodeChallenge.API.Middleware;
+using VogCodeChallenge.API.Services;
 
 namespace VogCodeChallenge.API
 {
@@ -30,8 +34,18 @@ namespace VogCodeChallenge.API
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "VogCodeChallenge.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "VogCodeChallenge.API", 
+                    Version = "v1",
+                    Description = "Backend code challenge for Vog."
+                });
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
+
+            services.AddSingleton<Data>(new DbData());
+
+            services.AddScoped<IEmployeeServices, EmployeeServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +61,8 @@ namespace VogCodeChallenge.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseMiddleware<GlobalExceptionHandler>();
 
             app.UseAuthorization();
 
